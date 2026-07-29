@@ -20,6 +20,6 @@ const userSchema = new mongoose.Schema({
     }
 })
 
-const userModal = moongoose.model('Users', userSchema);
+const userModal = mongoose.model('Users', userSchema);
 
 export default userModal;

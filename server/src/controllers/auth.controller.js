@@ -1,4 +1,4 @@
-import usermodal from "../modals/user.modal";
+import usermodal from "../models/user.model.js";
 
 async function registerUserController(req, res) {
 
