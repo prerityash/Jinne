@@ -1,4 +1,6 @@
 import usermodal from "../models/user.model.js";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 async function registerUserController(req, res) {
 
@@ -40,7 +42,7 @@ async function registerUserController(req, res) {
     const token = jwt.sign(
         { id: user.id, username: user.username },
         process.env.JWT_SECRET,
-        { expiresIN: "1D" }
+        { expiresIn: "1D" }
     )
 
     //cookie setup
@@ -87,7 +89,7 @@ async function loginUserController(req, res) {
     const token = jwt.sign(
         { id: user.id, username: user.username },
         process.env.JWT_SECRET,
-        { expiresIN: "1D" }
+        { expiresIn: "1D" }
     )
 
     res.cookie("token", token);
