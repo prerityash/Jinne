@@ -1,6 +1,7 @@
 import usermodal from "../models/user.model.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import blacklistedModel from "../models/blacklist.model.js";
 
 async function registerUserController(req, res) {
 
@@ -60,7 +61,7 @@ async function registerUserController(req, res) {
 }
 
 async function loginUserController(req, res) {
-    const [email, password] = req.body;  //becuz we only need email and pass during login
+    const { email, password } = req.body;  //becuz we only need email and pass during login
 
     if (!email || !password) {
         return res.status(400).json({
@@ -95,7 +96,7 @@ async function loginUserController(req, res) {
     res.cookie("token", token);
 
     //sending status code 200 OK
-    res.status(200).josn({
+    res.status(200).json({
         message: "User Logged in succesfully",
         user: {
             id: user.id,
@@ -105,4 +106,19 @@ async function loginUserController(req, res) {
     })
 }
 
-export default { registerUserController, loginUserController }
+async function logoutUserController(req, res) {
+
+    const usertoken = req.cookies.token;    //this is done use cookie parser middle 
+
+    if (usertoken) {
+        await blacklistedModel.create({ token: usertoken })
+    }
+
+    res.clearCookie("token");
+
+    res.status(200).json({
+        message: "Logout Successfully "
+    })
+}
+
+export default { registerUserController, loginUserController, logoutUserController }
