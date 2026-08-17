@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import authController from '../controllers/auth.controller.js';
+import authMiddleware from '../middlewares/auth.middleware.js';
 
 const authRouter = Router();
 
@@ -10,6 +11,9 @@ authRouter.post("/register", authController.registerUserController)
 authRouter.post("/login", authController.loginUserController)
 
 //created a logout route using login user controller
-authRouter.post("/logout", authController.logoutUserController)
+authRouter.get("/logout", authController.logoutUserController)
+
+//created a get user route so that it will return the values of the logged user [uses middleware]
+authRouter.get("/get-me", authMiddleware.authUser, authController.getUserController)
 
 export default authRouter;

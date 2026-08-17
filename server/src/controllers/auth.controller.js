@@ -2,6 +2,7 @@ import usermodal from "../models/user.model.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import blacklistedModel from "../models/blacklist.model.js";
+import userModal from "../models/user.model.js";
 
 async function registerUserController(req, res) {
 
@@ -121,4 +122,18 @@ async function logoutUserController(req, res) {
     })
 }
 
-export default { registerUserController, loginUserController, logoutUserController }
+async function getUserController(req, res) {
+
+    const user = await userModal.findById(req.user.id);
+
+    return res.status(200).json({
+        message: "User Found Successfully",
+        user: {
+            id: user.id,
+            username: user.username,
+            email: user.email
+        }
+    });
+}
+
+export default { registerUserController, loginUserController, logoutUserController, getUserController }
