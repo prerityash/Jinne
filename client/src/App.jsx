@@ -5,7 +5,8 @@ function App() {
 
   return (
     <>
-      <RouterProvider router={router} />  //router inside bracket is the router which we exported in app.routes.jsx page
+      {/* router inside => {router}<= is the router which we exported in app.routes.jsx page */}
+      <RouterProvider router={router} />
     </>
   )
 }
