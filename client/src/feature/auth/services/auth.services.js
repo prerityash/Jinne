@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-//this version is cleaned if want to see base version go to: https://github.com/prerityash/GenZ/blob/main/client/src/feature/auth/services/auth.services.js 
+//this version is cleaned if want to see base version go to blob fcb8a45e56a6a8c1c9a58f5ab6fc5407b7872eb8
 
 const api = axios.create({
     baseURL: "http://localhost:5173",
