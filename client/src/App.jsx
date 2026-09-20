@@ -6,9 +6,11 @@ function App() {
 
   return (
     <>
-      <AuthProvider>
+      <AuthProvider>  {/* we have wrapped whole app inside authprovide i.e in auth.context.jsx so that every components get user details easily */}
+
         {/* router inside => {router}<= is the router which we exported in app.routes.jsx page */}
         <RouterProvider router={router} />
+
       </AuthProvider>
     </>
   )
