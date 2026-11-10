@@ -3,7 +3,7 @@ import axios from 'axios'
 //this version is cleaned if want to see base version go to blob fcb8a45e56a6a8c1c9a58f5ab6fc5407b7872eb8
 
 const api = axios.create({
-    baseURL: "http://localhost:5173",
+    baseURL: "http://localhost:3000",   //fixed base url in this version to 3000 as we are using axios in backend
     withCredentials: true, // send cookies with every request
 });
 

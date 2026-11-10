@@ -9,23 +9,39 @@ export const useAuth = () => {
 
     const handleLogin = async ({ email, password }) => {
         setLoading(true);
-        const data = await login({ email, password })
-        setUser(data.user) // this >user< in data.user comes from backend auth controller as it returns user with all parameter
-        setLoading(false);
+        try {
+            const data = await login({ email, password })
+            setUser(data.user) // this >user< in data.user comes from backend auth controller as it returns user with all parameter
+        } catch (err) {
+
+        } finally {
+            setLoading(false);
+        }
     }
 
     const handleRegister = async ({ username, email, password }) => {
         setLoading(true);
-        const data = await register({ username, email, password });
-        setUser(data.user)
-        setLoading(false)
+
+        try {
+            const data = await register({ username, email, password });
+            setUser(data.user)
+        } catch (err) {
+
+        } finally {
+            setLoading(false)
+        }
     }
 
     const handleLogout = async () => {
         setLoading(true);
-        const data = await logout()
-        setUser(NULL);
-        setLoading(false)
+        try {
+            const data = await logout()
+            setUser(NULL);
+        } catch (err) {
+
+        } finally {
+            setLoading(false)
+        }
 
     }
 
