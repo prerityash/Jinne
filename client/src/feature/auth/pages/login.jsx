@@ -1,19 +1,22 @@
 import { React, useState } from "react";
 import "../auth.pages.scss"
-import { Link } from "react-router";
+import { Link, Navigate } from "react-router";
 import { useAuth } from "../hooks/useAuth";
+import { useNavigate } from "react-router";
 
 const Login = () => {
 
-    const {loading, handleLogin} = useAuth();
+    const { loading, handleLogin } = useAuth();
     //we have used {} instead of [] becuz we are destructing our objects from useAuth export that we had made in client\src\feature\auth\hooks\useAuth.js
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    const navigate = useNavigate();
     const handlesubmit = async (e) => {
         e.preventDefault();
-        handleLogin({ email, password });  //this will invoke the handleLogin() function in useAuth.js and pass email and pass to it
+        await handleLogin({ email, password });  //this will invoke the handleLogin() function in useAuth.js and pass email and pass to it
+        navigate("/dashboard");
     }
 
     if (loading) {
@@ -32,14 +35,14 @@ const Login = () => {
                     <div className="form-input">
                         <label htmlFor="email">Email</label>
                         <input
-                            onChange={(e) => { setEmail(e.target.value) }}
+                            onChange={(e) => { setEmail(e.target.value) }}      //2_way_binding
                             type="email" id="email" name="email" placeholder="johndoe@gmail.com" />
                     </div>
 
                     <div className="form-input">
                         <label htmlFor="password">Password</label>
                         <input
-                            onChange={(e) => { setPassword(e.target.value) }}
+                            onChange={(e) => { setPassword(e.target.value) }}       //2_way_binding
                             type="password" id="password" name="password" placeholder="********" />
                     </div>
 

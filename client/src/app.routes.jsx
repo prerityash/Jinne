@@ -10,5 +10,9 @@ export const router = createBrowserRouter([
     {
         path: "/",
         element: <Register />
+    },
+    {
+        path: "dashboard",
+        element: <h1>Hello welcome!</h1>
     }
 ])
