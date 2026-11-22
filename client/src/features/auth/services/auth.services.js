@@ -54,6 +54,8 @@ export async function getMe() {
             withCredentials: true
         })
 
+        return response.data
+
     } catch (err) {
         console.log(err)
     }
