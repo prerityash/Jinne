@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/prerityash/GenZ#readme",
   "dependencies": {
+    "@google/genai": "^2.32.0",
     "express": "^5.2.1",
     "react-router": "^7.18.2",
     "sass": "^1.103.1"
