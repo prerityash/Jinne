@@ -10,8 +10,6 @@ const port = 3000;
 
 await connectDb() //await is must otherwise syncronous calling
 
-await invokeGeminiAi()
-
 app.listen(port, () => {
     console.log(`We are online on ${port}`)
 })
