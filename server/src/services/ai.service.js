@@ -9,6 +9,7 @@ const ai = new GoogleGenAI({
     apiKey: process.env.GEMINI_API_KEY
 })
 
+//schema is in ZOD format
 const interviewReportSchema = z.object({
     matchScore: z.number().min(0).max(100).describe("A score between 0 and 100 indicating how well the candidate's profile matches the job describe"),
 
@@ -39,15 +40,15 @@ const interviewReportSchema = z.object({
 
 async function generateInterviewReport({ resume, selfDescription, jobDescription }) {
     
+    
 
-
-    const response = await client.interactions.create({
+    const response = await ai.interactions.create({
         model: "gemini-2.5-flash",
         input: prompt,
         response_format: {
             type: 'text',
-            mime_type: 'application/json',
-            schema: interviewReportSchema
+            mime_type: 'application/json',  //model will take reponse in json format
+            schema: z.toJSONSchema(interviewReportSchema) //so we used this method to parse ZOD to JSON
     },
 });
 }
