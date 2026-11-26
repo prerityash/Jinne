@@ -38,7 +38,7 @@ const interviewReportSchema = z.object({
     title: z.string().describe("The title of the job for which the interview report is generated"),
 })
 
-async function generateInterviewReport({ resume, selfDescription, jobDescription }) {
+async function generateInterviewReport( /* here we need to give params to convert the details to report */) {
     
     const prompt = `Generate a interview report for a candidate with the following details:
                     Resume ${resume}
@@ -56,7 +56,8 @@ async function generateInterviewReport({ resume, selfDescription, jobDescription
         },
     });
 
-    console.log(JSON.parse(response.output_text))
+   // console.log(JSON.parse(response.output_text))
+    console.dir(JSON.parse(response.output_text), { depth: null });
 
 
 }
