@@ -40,19 +40,27 @@ const interviewReportSchema = z.object({
 
 async function generateInterviewReport({ resume, selfDescription, jobDescription }) {
     
-    
+    const prompt = `Generate a interview report for a candidate with the following details:
+                    Resume ${resume}
+                    Self Description ${selfDescription}
+                    Job Description ${jobDescription}`
+                
 
     const response = await ai.interactions.create({
-        model: "gemini-2.5-flash",
+        model: "gemini-3.5-flash-lite",
         input: prompt,
         response_format: {
             type: 'text',
             mime_type: 'application/json',  //model will take reponse in json format
             schema: z.toJSONSchema(interviewReportSchema) //so we used this method to parse ZOD to JSON
-    },
-});
+        },
+    });
+
+    console.log(JSON.parse(response.output_text))
+
+
 }
 
-export default invokeGeminiAi
+export default generateInterviewReport;
 
 

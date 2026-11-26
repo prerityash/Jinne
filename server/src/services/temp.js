@@ -190,4 +190,4 @@ HR Interview
 Final Selection
 ` 
 
-export default {resume, selfDescription, jobDescription}
+export {resume, selfDescription, jobDescription}
